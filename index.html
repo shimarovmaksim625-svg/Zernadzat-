@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Зёрнышко — Кофейня у метро</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+    :root {
+      --primary: #2C1E0F;
+      --accent: #C8965E;
+      --bg: #FAF6F0;
+      --text: #212121;
+      --white: #FFFFFF;
+      --fs-base: 16px;
+      --max-width: 1200px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; font-size: var(--fs-base); color: var(--text); background: var(--bg); line-height: 1.6; }
+    h1, h2, h3, .logo { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.2; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+    .btn { display: inline-block; padding: 0.875rem 1.75rem; border-radius: 999px; font-weight: 600; font-size: 1rem; cursor: pointer; border: none; transition: transform 0.2s, opacity 0.2s; }
+    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn--accent { background: var(--accent); color: var(--white); }
+    section { padding: 4rem 1rem; }
+    .section-title { font-size: 2rem; text-align: center; margin-bottom: 3rem; }
+    .header { background: var(--white); border-bottom: 1px solid rgba(44, 30, 15, 0.06); position: sticky; top: 0; z-index: 100; }
+    .header .container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; color: var(--primary); }
+    .nav-list { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-list a { font-size: 1rem; color: var(--text); transition: color 0.2s; }
+    .nav-list a:hover, .nav-list a.active { color: var(--accent); }
+    .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text); cursor: pointer; }
+    .banner { background: var(--primary); color: var(--white); text-align: center; padding: 5rem 1rem; }
+    .banner-inner { max-width: var(--max-width); margin: 0 auto; }
+    .banner h1 { font-size: 3rem; color: var(--white); margin-bottom: 1rem; }
+    .banner p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9; }
+    .advantages .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .advantages .card { background: var(--white); padding: 2rem 1.5rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(44, 30, 15, 0.06); text-align: center; display: flex; flex-direction: column; height: 100%; }
+    .advantages .card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+    .popular-menu .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .popular-menu .card { background: var(--white); border-radius: 16px; box-shadow: 0 4px 20px rgba(44, 30, 15, 0.06); overflow: hidden; display: flex; flex-direction: column; }
+    .popular-menu .card .icon { width: 100%; height: 200px; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #aaa; }
+    .popular-menu .card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .popular-menu .card p { font-size: 0.95rem; margin-bottom: 1rem; flex: 1; opacity: 0.9; }
+    .popular-menu .card .price { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--accent); margin-top: auto; }
+    .reviews .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .reviews .card { background: var(--white); padding: 1.5rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(44, 30, 15, 0.06); }
+    .reviews .example { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; color: var(--accent); margin-bottom: 0.75rem; }
+    .reviews .author { font-weight: 600; font-size: 0.95rem; }
+    .reviews .note { text-align: center; font-size: 0.9rem; opacity: 0.7; margin-top: 1rem; }
+    .footer { background: var(--primary); color: var(--white); padding: 3rem 1rem 1.5rem; }
+    .footer-inner { max-width: var(--max-width); margin: 0 auto 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+    .footer-inner p { font-size: 0.95rem; opacity: 0.9; }
+    .copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; opacity: 0.7; }
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      .nav-list { position: fixed; inset: 0 0 0 auto; background: var(--bg); width: 70vw; max-width: 260px; flex-direction: column; padding: 4rem 1.5rem 1.5rem; gap: 1.5rem; transform: translateX(100%); transition: transform 0.3s ease; box-shadow: -4px 0 12px rgba(44, 30, 15, 0.08); border-left: 1px solid rgba(44, 30, 15, 0.06); z-index: 200; }
+      .nav-list.open { transform: translateX(0); }
+      .nav-list a { font-size: 1.1rem; }
+      .banner h1 { font-size: 2rem; }
+      .section-title { font-size: 1.75rem; }
+    }
+    .text-center { text-align: center; }
+  </style>
+</head>
+  <header class="header">
+    <div class="container">
+      <div class="logo">Зёрнышко</div>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="index.html" class="active">Главная</a></li>
+          <li><a href="menu.html">Меню</a></li>
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">Бронирование</a></li>
+          <li><a href="#">Контакты</a></li>
+        </ul>
+        <button class="menu-toggle">☰</button>
+      </nav>
+    </div>
+  </header>
+  <section class="banner">
+    <div class="container banner-inner">
+      <h1>Зёрнышко</h1>
+      <p>Уютная кофейня у метро. Свежий кофе, десерты и тёплая атмосфера.</p>
+      <button class="btn btn--accent">Забронировать</button>
+    </div>
+  </section>
+  <section class="advantages">
+    <div class="container">
+      <h2 class="section-title">Преимущества</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Свежие зерна</h3>
+          <p>Обжариваем кофе небольшими партиями каждую неделю.</p>
+        </div>
+        <div class="card">
+          <h3>Домашняя выпечка</h3>
+          <p>Десерты от нашего пекаря — каждый день свежие.</p>
+        </div>
+        <div class="card">
+          <h3>Место для встреч</h3>
+          <p>Удобные столы, быстрый Wi-Fi и тёплая атмосфера.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="popular-menu">
+    <div class="container">
+      <h2 class="section-title">Популярные позиции меню</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="icon">☕</div>
+          <h3>Капучино</h3>
+          <p>Классический кофе с молочной пеной.</p>
+          <span class="price">200 ₽</span>
+        </div>
+        <div class="card">
+          <div class="icon">🍰</div>
+          <h3>Чизкейк</h3>
+          <p>Нежный сырный десерт с ягодным соусом.</p>
+          <span class="price">320 ₽</span>
+        </div>
+        <div class="card">
+          <div class="icon">🍳</div>
+          <h3>Омлет</h3>
+          <p>Яичница с овощами и тостами.</p>
+          <span class="price">250 ₽</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="reviews">
+    <div class="container">
+      <h2 class="section-title">Отзывы</h2>
+      <div class="cards">
+        <div class="card">
+          <span class="example">Пример от команды</span>
+          <p>★★★★★ Отличный кофе и приветливый персонал. Заходим каждые выходные!</p>
+          <p class="author">Анна Петрова</p>
+        </div>
+        <div class="card">
+          <span class="example">Пример от команды</span>
+          <p>★★★★★ Уютно, вкусно, рядом с метро. Идеально для учёбы и встреч.</p>
+          <p class="author">Дмитрий Смирнов</p>
+        </div>
+        <div class="card">
+          <span class="example">Пример от команды</span>
+          <p>★★★★☆ Вкусная выпечка, быстрая подача. Рекомендуем!</p>
+          <p class="author">Елена Иванова</p>
+        </div>
+      </div>
+      <p class="note">Тексты отзывов придуманы командой как пример.</p>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Зёрнышко</div>
+        <p>г. Москва, улица Примерная, д. 1 (у метро)</p>
+        <p>+7 (495) 000-00-00</p>
+        <p>Ежедневно 8:00–22:00</p>
+      </div>
+      <p class="copyright">&copy; 2026 Зёрнышко. Все права защищены.</p>
+    </div>
+  </footer>
+  <script>
+    // Zernadzat — скрипты интерфейса
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navList = document.querySelector('.nav-list');
+
+      if (menuToggle && navList) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = navList.classList.toggle('open');
+          menuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        // Закрытие мобильного меню при клике на ссылку
+        navList.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            navList.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      // Демо-отправка форм (бронирование / отзыв). В реальном проекте здесь отправка на сервер.
+      document.querySelectorAll('form').forEach((form) => {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const btn = form.querySelector('button[type="submit"]');
+          const originalText = btn.textContent;
+          btn.textContent = 'Отправляется…';
+          btn.disabled = true;
+
+          setTimeout(() => {
+            btn.textContent = 'Отправлено!';
+            setTimeout(() => {
+              btn.textContent = originalText;
+              btn.disabled = false;
+              form.reset();
+            }, 1200);
+          }, 800);
+        });
+      });
+
+      // Фильтрация меню по категориям
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const menuCards = document.querySelectorAll('.menu-card');
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const category = btn.getAttribute('data-category');
+
+          // Активная кнопка
+          filterBtns.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          // Показать/скрыть карточки
+          menuCards.forEach((card) => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
