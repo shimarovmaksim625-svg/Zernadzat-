@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../styles/styles.css">
   <link rel="stylesheet" href="../styles/responsive.css">
 </head>
+<body>
   <header class="header">
     <div class="container">
       <div class="logo">Зёрнышко</div>
@@ -18,11 +19,12 @@
           <li><a href="#">Бронирование</a></li>
           <li><a href="#">Контакты</a></li>
         </ul>
-        <button class="menu-toggle">☰</button>
+        <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
       </nav>
     </div>
   </header>
-  <section class="banner">
+  <main>
+    <section class="banner">
     <div class="container banner-inner">
       <h1>Зёрнышко</h1>
       <p>Уютная кофейня у метро. Свежий кофе, десерты и тёплая атмосфера.</p>
@@ -96,6 +98,7 @@
       <p class="note">Тексты отзывов придуманы командой как пример.</p>
     </div>
   </section>
+  </main>
   <footer class="footer">
     <div class="container">
       <div class="footer-inner">
@@ -107,71 +110,6 @@
       <p class="copyright">&copy; 2026 Зёрнышко. Все права защищены.</p>
     </div>
   </footer>
-  <script>
-    // Zernadzat — скрипты интерфейса
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuToggle = document.querySelector('.menu-toggle');
-      const navList = document.querySelector('.nav-list');
-
-      if (menuToggle && navList) {
-        menuToggle.addEventListener('click', () => {
-          const isOpen = navList.classList.toggle('open');
-          menuToggle.setAttribute('aria-expanded', String(isOpen));
-        });
-
-        // Закрытие мобильного меню при клике на ссылку
-        navList.querySelectorAll('a').forEach((link) => {
-          link.addEventListener('click', () => {
-            navList.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-          });
-        });
-      }
-
-      // Демо-отправка форм (бронирование / отзыв). В реальном проекте здесь отправка на сервер.
-      document.querySelectorAll('form').forEach((form) => {
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const btn = form.querySelector('button[type="submit"]');
-          const originalText = btn.textContent;
-          btn.textContent = 'Отправляется…';
-          btn.disabled = true;
-
-          setTimeout(() => {
-            btn.textContent = 'Отправлено!';
-            setTimeout(() => {
-              btn.textContent = originalText;
-              btn.disabled = false;
-              form.reset();
-            }, 1200);
-          }, 800);
-        });
-      });
-
-      // Фильтрация меню по категориям
-      const filterBtns = document.querySelectorAll('.filter-btn');
-      const menuCards = document.querySelectorAll('.menu-card');
-
-      filterBtns.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const category = btn.getAttribute('data-category');
-
-          // Активная кнопка
-          filterBtns.forEach((b) => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          // Показать/скрыть карточки
-          menuCards.forEach((card) => {
-            if (category === 'all' || card.getAttribute('data-category') === category) {
-              card.classList.remove('hidden');
-            } else {
-              card.classList.add('hidden');
-            }
-          });
-        });
-      });
-    });
-  </script>
+  <script src="../js/script.js"></script>
 </body>
 </html>

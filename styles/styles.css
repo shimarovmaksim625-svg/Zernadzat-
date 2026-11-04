@@ -124,6 +124,8 @@ section {
   color: var(--text);
   font-size: 1.5rem;
   cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
 }
 
 .footer {

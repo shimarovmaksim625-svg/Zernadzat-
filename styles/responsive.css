@@ -1,6 +1,29 @@
 @media (max-width: 768px) {
+  /* Затемнение фона за выезжающим меню */
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .nav-overlay.visible {
+    display: block;
+  }
+
+  body.no-scroll {
+    overflow: hidden;
+  }
+
   .menu-toggle {
     display: block;
+  }
+
+  /* Хедер должен быть выше затемнения, иначе меню (внутри хедера) окажется под overlay */
+  .header,
+  .page-about .header {
+    z-index: 200;
   }
 
   .nav-list {
