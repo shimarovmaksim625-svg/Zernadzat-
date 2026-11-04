@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initForms();
   initMenuFilter();
   initBookingForm();
+  initBackToTop();
 });
 
 // Мобильное меню: кнопка-«бургер» до 768px
@@ -291,4 +292,28 @@ function initBookingForm() {
     const d = new Date(dateStr);
     return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} г.`;
   }
+}
+
+// Кнопка «Наверх»: появляется после прокрутки за первый экран
+function initBackToTop() {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', 'Наверх');
+  btn.innerHTML = '&#8593;';
+  document.body.appendChild(btn);
+
+  // Порог появления — 200px от верха
+  const threshold = 200;
+
+  const toggle = () => {
+    btn.classList.toggle('visible', window.scrollY > threshold);
+  };
+
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }
