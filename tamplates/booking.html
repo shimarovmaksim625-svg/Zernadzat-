@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Забронируйте столик в кофейне «Зёрнышко».">
+  <title>Бронирование — Зёрнышко</title>
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/responsive.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">Зёрнышко</a>
+      <nav aria-label="Основная навигация">
+        <ul class="nav-list" id="nav-list">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="menu.html">Меню</a></li>
+          <li><a href="about.html">О нас</a></li>
+          <li><a href="booking.html" class="active" aria-current="page">Бронирование</a></li>
+          <li><a href="#">Контакты</a></li>
+        </ul>
+        <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-list">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="booking-hero">
+      <div class="container">
+        <h1>Забронировать столик</h1>
+        <p>Заполните форму — мы ждём вас в «Зёрнышке»!</p>
+      </div>
+    </section>
+
+    <section class="booking-section">
+      <div class="container">
+        <form class="booking-form" id="booking-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="guest-name">Имя *</label>
+              <input type="text" id="guest-name" name="name" placeholder="Ваше имя" required minlength="2" maxlength="40">
+              <span class="form-error" id="guest-name-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="guest-phone">Телефон *</label>
+              <input type="tel" id="guest-phone" name="phone" placeholder="+7 (XXX) XXX-XX-XX" required>
+              <span class="form-error" id="guest-phone-error"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="booking-date">Дата *</label>
+              <input type="date" id="booking-date" name="date" required>
+              <span class="form-error" id="booking-date-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="booking-time">Время *</label>
+              <input type="time" id="booking-time" name="time" value="09:00" min="09:00" max="21:00" required step="1800">
+              <span class="form-error" id="booking-time-error"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="guests-count">Число гостей *</label>
+              <select id="guests-count" name="guests" required>
+                <option value="">Выберите</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+              </select>
+              <span class="form-error" id="guests-error"></span>
+            </div>
+          </div>
+
+          <div class="form-group form-group--full">
+            <label for="guest-comment">Комментарий</label>
+            <textarea id="guest-comment" name="comment" rows="4" maxlength="200" placeholder="Пожелания, повод визита и т.д."></textarea>
+            <span class="char-count"><span id="char-current">0</span>/200</span>
+            <span class="form-error" id="comment-error"></span>
+          </div>
+
+          <button type="submit" class="btn btn--accent booking-form__submit">Забронировать</button>
+        </form>
+
+        <p class="booking-note">Учебный проект. Данные формы не передаются.</p>
+
+        <!-- Блок подтверждения -->
+        <div class="booking-confirmation" id="booking-confirmation" hidden>
+          <div class="confirmation-icon" aria-hidden="true">✓</div>
+          <h2 id="confirmation-title"></h2>
+          <p id="confirmation-text"></p>
+          <button type="button" class="btn btn--accent" id="confirmation-close">Отлично!</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-logo">Зёрнышко</p>
+          <p>Место, где каждая чашка — маленькое приключение.</p>
+        </div>
+        <div>
+          <p><strong>Адрес</strong></p>
+          <p>ул. Примерная, 12</p>
+        </div>
+        <div>
+          <p><strong>Часы работы</strong></p>
+          <p>Пн–Вс: 09:00–22:00</p>
+        </div>
+        <div>
+          <p><strong>Контакты</strong></p>
+          <p>+7 (999) 123-45-67</p>
+          <p>hello@zernyshko.local</p>
+        </div>
+      </div>
+      <p class="copyright">© 2025 «Зёрнышко». Учебный проект.</p>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>

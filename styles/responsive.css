@@ -54,8 +54,44 @@
     font-size: 2rem;
   }
 
-  .section-title {
+  .page-about .section-title {
     font-size: 1.75rem;
+  }
+
+  /* Форма бронирования: одна колонка, крупные поля для касаний */
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .booking-section {
+    padding: 2.5rem 0.5rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.85rem 0.9rem;
+    /* 16px предотвращает автозум iOS при фокусе */
+    font-size: 16px;
+  }
+
+  .booking-form__submit {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+
+  .booking-confirmation {
+    margin-top: 2rem;
+    padding: 2rem 1.25rem;
+  }
+
+  .booking-confirmation h2 {
+    font-size: 1.3rem;
+  }
+
+  .booking-confirmation p {
+    font-size: 1rem;
   }
 
   .page-about .nav-list {
