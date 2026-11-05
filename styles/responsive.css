@@ -68,6 +68,19 @@
     padding: 2.5rem 0.5rem;
   }
 
+  .contacts-section {
+    padding: 2.5rem 0.5rem;
+  }
+
+  .contacts-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .contacts-map,
+  .contacts-map iframe {
+    min-height: 300px;
+  }
+
   .form-group input,
   .form-group select,
   .form-group textarea {
